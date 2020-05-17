@@ -1,0 +1,14 @@
+@import "~bootstrap/scss/mixins/_breakpoints.scss";
+@import "variables";
+
+@each $breakpoint, $value in $breakpoints {
+  $min: breakpoint-min($breakpoint);
+  $breakpoint-name: if($min, -#{$breakpoint}, "");
+  @for $i from 1 through 4 {
+    @include media-breakpoint-up($breakpoint) {
+      .flex-basis#{$breakpoint-name}-#{$i*25} {
+        flex-basis: percentage($i * 0.25);
+      }
+    }
+  }
+}

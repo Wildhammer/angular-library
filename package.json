@@ -7,9 +7,17 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "cp-styles": "cpx-fixed \"./projects/common/src/**/*.scss\" \"./dist/common/scss/\"",
+    "cp-assets": "cpx-fixed \"./projects/common/src/assets/**/*\" \"./dist/common/assets/\"",
+    "cp-readme": "cpx-fixed ./README.md ./dist/common/",
+    "cp-npmrc": "cpx-fixed ./.npmrc ./dist/common/",
+    "postbuild": "npm run cp-styles && npm run cp-assets",
+    "postpack": "npm run cp-npmrc && npm run cp-readme",
+    "npm-pack": "cd dist/common && npm pack",
+    "package": "ng build common --prod && npm run postbuild && npm run npm-pack && npm run postpack",
+    "release": "npm run package && cd ./dist/common && npm publish --access=public"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.7",
     "@angular/common": "~9.1.7",
@@ -19,6 +27,7 @@
     "@angular/platform-browser": "~9.1.7",
     "@angular/platform-browser-dynamic": "~9.1.7",
     "@angular/router": "~9.1.7",
+    "bootstrap": "^4.5.0",
     "rxjs": "~6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -44,6 +53,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "cpx-fixed": "1.6.0"
   }
 }

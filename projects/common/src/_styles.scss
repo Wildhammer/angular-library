@@ -1,0 +1,11 @@
+/* This is to be imported in the consumer project */
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "variables";
+@import "~bootstrap/scss/bootstrap";
+// everything till here is for overriding bootstrap breakpoints
+@import "common";
+
+/* Things like typograpohy, theming usually follow up
+    in a shared library like this
+*/
